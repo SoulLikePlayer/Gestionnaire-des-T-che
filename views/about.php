@@ -6,6 +6,7 @@
     <title>Principes du MVC</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <h1>Qu'est-ce qu'un routeur ?</h1>
 </body>
 </html>

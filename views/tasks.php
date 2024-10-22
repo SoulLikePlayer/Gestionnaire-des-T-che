@@ -6,6 +6,7 @@
     <title>Gestionnaire de tâches</title>
 </head>
 <body>
+<?php include 'header.php'; ?>
 <h1>Liste des tâches</h1>
 <ul>
 <?php foreach ($tasks as $task): ?>

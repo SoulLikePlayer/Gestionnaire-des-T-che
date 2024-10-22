@@ -6,6 +6,7 @@
     <title>page introuvable</title>
 </head>
 <body>
+    <?php include 'header.php'; ?>
     <p>La page que vous avez demandée n'existe pas.</p>
 </body>
 </html>
