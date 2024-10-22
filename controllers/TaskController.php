@@ -11,10 +11,15 @@ class TaskController
 
     public function show($id)
     {
-        // Logique pour afficher une tâche par son ID
 
         $taskModel = new Task;
         $task = $taskModel->getAllTasks();
+
+        if(!is_numeric($id) || $id < 0){
+            require 'views/404.php';
+            return;
+        }
+
         $tasks = [$task[$id]];
         require 'views/tasks.php';
     }
