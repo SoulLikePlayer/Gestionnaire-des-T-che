@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /GestionnaireTache/
+RewriteRule ^(.*)$ index.php [QSA,L]
