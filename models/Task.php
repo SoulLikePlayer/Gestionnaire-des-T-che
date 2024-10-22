@@ -1,14 +1,31 @@
 <?php
+require_once 'config.php';
+
 class Task {
+    private $pdo;
+
+    public function __construct() {
+        $database = new Database();
+        $this->pdo = $database->getConnection();
+    }
+
     public function getAllTasks() {
-        // COn peut mettre ici le code nécessaire pour récupérer toutes les tâches depuis la base de données
-        $tasks = array(
-            array('id' => 1, 'title' => 'Suivre les cours associés à PHP'),
-            array('id' => 2, 'title' => 'Comprendre le principe du MVC'),
-            array('id' => 3, 'title' => 'Concevoir une base données'),
-            array('id' => 4, 'title' => 'Gérer le CRUD'),
-            array('id' => 5, 'title' => 'Ajouter meles fonctionnalités du projet'),
-        );
-        return $tasks;
+        $stmt = $this->pdo->query('SELECT * FROM tasks');
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function addTask($title, $description) {
+        $stmt = $this->pdo->prepare('INSERT INTO tasks (title, description) VALUES (:title, :description)');
+        $stmt->execute([
+            ':title' => $title,
+            ':description' => $description,
+        ]);
+    }
+
+    public function getTaskById($id) {
+        $stmt = $this->pdo->prepare('SELECT * FROM tasks WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+
